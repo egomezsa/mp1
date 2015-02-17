@@ -1,10 +1,16 @@
+
+// Global variables used to access important DOM elements.
 var currentImage = $(".startImage")[0];
 var transitionEnd = 'transitionend webkitTransitionEnd oTransitionEnd transitionend';
 var topBar = $('.topbar')
 var topBarHeight = topBar.height();  
 var wrap = $('.wrap');
-var location_slider = $('.sliderWindow').offset();
+var navChildren = $('.topbar ul').children();
+var locations = [];
+var topbarColor = '-webkit-linear-gradient(#AAAAAA, #999999) -o-linear-gradient(#AAAAAA, #999999) -moz-linear-gradient(#AAAAAA, #999999) linear-gradient(#AAAAAA, #999999)';
+var topbarHighlight = '#BABABA';
 
+// Functions used to trigger events
 function highlightThis(){
 	var a=this.style.backgroundColor;
 	this.style.backgroundColor="yellow",
@@ -81,15 +87,50 @@ function leftArrow() {
 	arrowClick(-1);
 }
 
+
+// Populating the locations that will be used position indications
+for (var a = 0 ; a < navChildren.length; a++){
+	var tar = '.'.concat(navChildren[a].id);
+	if ($(tar).length > 0){
+		locations.push($(tar).offset());
+	} 
+}
+
+// Navbar resizing and position indication.
 $(window).scroll(function(){
 	// console.log($('.topbar').height());
 	var scrollTop = $(window).scrollTop();
+	var current = locations[0];
+
+	for (var indx = 0 ; indx < locations.length ; indx ++){
+		
+		$(navChildren[indx]).css('background','');
+		if (locations[indx].top - 500 < scrollTop ){
+			current = indx;
+
+		}
+	}
+
+	$(navChildren[current]).css('background',topbarHighlight);
+
 	if (scrollTop > topBarHeight ){
-		$('.topbar').height(50);		
+		$('.topbar').height(70);		
 	} 
 	else{
 		$('.topbar').height(topBarHeight);
 	}
 
 });
+
+$( ".popup_bar i"  ).click(function() {
+	$(".background_color").css("visibility","hidden");
+	$(".popup").css("visibility","hidden");
+
+	$(".popup").find(".popup_body").find('.svgImage').remove();
+	$(".popup").find(".popup_body").find('.popup_text').empty();
+});
+
+
+
+
 

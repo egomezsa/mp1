@@ -1,6 +1,243 @@
-@import "compass";
-@import "compass/reset";
+@import url("http://fonts.googleapis.com/css?family=Bree+Serif|Merriweather");@import url("http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font:inherit;font-size:100%;vertical-align:baseline}html{line-height:1}ol,ul{list-style:none}table{border-collapse:collapse;border-spacing:0}caption,th,td{text-align:left;font-weight:normal;vertical-align:middle}q,blockquote{quotes:none}q:before,q:after,blockquote:before,blockquote:after{content:"";content:none}a img{border:none}article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{display:block}h1{font-size:2.2rem;color:#ef7e60}.test{font-size:1.2rem;color:#2176C7}
 
-@import "variables";
-@import "mixins";
-@import "base";
+$topBarTop : #AAAAAA;
+$backColor : #FAFAFA;
+$topBarBottom : #999999;
+$textColor : #FEFEFE;
+$textFamily: 'Sintony', sans-serif;
+
+body{
+	margin: 0;
+}
+
+.svgImage{
+	width: 100%;
+	height: 100%;
+}
+
+.gallery{
+	height: 400px;
+	padding: 0 100px;
+	background-color: $backColor;
+    -webkit-column-count: 3; /* Chrome, Safari, Opera */
+    -moz-column-count: 3; /* Firefox */
+    column-count: 3;
+}
+
+@mixin galleryCol($color){
+	width: 100%;
+	height: 100%;
+	background-color: $color;
+
+}
+.background_color{
+    position:fixed;
+    padding:0;
+    margin: 0;
+    margin-top:-100px;
+    width: 100%;
+    height: 100%;
+    background:rgba(10,10,10,0.5);
+	z-index: 10;
+	visibility: hidden;
+	opacity: 1;
+}
+
+.popup{
+	position: fixed;
+    padding:0;
+    margin: 10% 20% 0 20%;
+	visibility: hidden;
+	border-radius: 25px;
+	height: 40%;
+	width: 50%;
+	background-color: $backColor;	
+}
+
+.popup_bar{
+	height: 60px;
+	width: 100%;
+	background-color: $backColor;
+	border-radius: 25px;
+}
+
+.popup_bar i{
+	position: relative;
+	margin-left: 95%;
+}
+
+.popup_body{
+	height: 100%;
+    -webkit-column-count: 2; /* Chrome, Safari, Opera */
+    -moz-column-count: 2; /* Firefox */
+    column-count: 2;
+}
+.popup_text{
+	position: relative;
+	height: 100%;
+	font-family: $textFamily;
+	margin-left: 10px;
+	font-size: 45px;
+	text-align: center;
+}
+
+.who {
+	margin: 0 25%;
+	padding-top: 200px;
+	padding-bottom: 200px;
+	font-family: $textFamily;
+}
+
+.leftCol{ @include galleryCol(#FAFAFF)};
+.midCol{ @include galleryCol(#FFFAFA);};
+.rightCol{ @include galleryCol(#FAFFFA);};
+
+.startImage{
+	z-index: 0;
+}
+
+.fadeImage{
+	z-index: 0;
+}
+
+.nextImage{
+	z-index: -1;
+}
+
+
+.hiddenImage{
+	visibility: hidden;
+	height: 500px;
+	width: 800px;
+	z-index: -2;
+}
+
+.slider{
+	padding: 600px 0 100px 0;
+}
+
+
+@mixin arrows($color){
+	position: absolute;
+	height: 100%;
+	width: 30px;
+	background-color: $color;
+	z-index: 1;
+	opacity: 1;
+
+}
+
+.leftArrow{
+	@include arrows($backColor);
+	margin-right: 0;
+	padding-right: 10px;
+};
+
+.leftArrow i{
+	margin-top: 230px;
+	margin-right: 20px;
+};
+
+.rightArrow{
+	@include arrows($backColor);
+	margin-left: 100%;
+	padding-right: 10px;
+};
+
+.rightArrow i{
+	margin-top: 230px;
+};
+
+.sliderWindow{
+	height: 500px;
+	width: 800px;
+	position: relative;
+	margin: 0 auto;
+	top: 70px;
+
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+
+.sliderWindow img{
+	position: absolute;
+}
+
+.wrap{
+	margin: auto;
+	margin-top: 100px;
+	width: 100%;
+
+}
+
+.dialog{
+	visibility: hidden;
+}
+
+.main_text{
+	height: 150px;
+	position:  relative;
+	margin: 0 auto;
+	margin-left: 300px;
+	margin-top: 50px;
+
+}
+.topbar {
+	position: fixed;
+	top: 0;
+	width:100%;
+	height:100px;
+	margin:0;
+	margin-top: 0;
+	padding-left:15px;
+	color: #000000;
+	z-index: 3;
+	float: left;
+	-webkit-transition: height 0.5s ease;
+	background: -webkit-linear-gradient($topBarTop, $topBarBottom); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient($topBarTop, $topBarBottom); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient($topBarTop, $topBarBottom); /* For Firefox 3.6 to 15 */
+    background: linear-gradient($topBarTop, $topBarBottom); /* Standard syntax (must be last) */
+
+}
+
+
+
+.topbar ul{
+	/* http://www.w3schools.com/css/css_navbar.asp */
+	list-style-type: none;
+	margin-right: 5%;
+	position: relative;
+	text-align: center;
+	height: 100%;
+
+}
+
+.topbar li{
+	display: inline;
+	position: relative;
+	height: 100px;
+	top: 40%;
+	margin-left: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-right: 20px;
+	font-family: 'Abel', sans-serif;
+	color: $textColor;
+   	font-size: 30px;
+   	border-radius: 5px;
+
+}
+
+.video{
+	position: absolute;
+	width: 100%;
+	padding: 200px 0 100px 0;
+}
+
+.videoFrame{
+	position: relative;
+	margin-left: 25%;
+	margin-right: 25%;
+}

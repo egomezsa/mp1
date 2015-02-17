@@ -1,0 +1,6 @@
+
+@mixin galleryCol($color){
+	float: left;
+	width: 33.33%;
+	background-color: $color;
+}
