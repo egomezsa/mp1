@@ -9,21 +9,27 @@
 	<link href='http://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
 
 
+
 </head>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
 </script>
 
 <body>
 
+	
+	<div class="topbar">
+		<ul>
+			<li id="who">  WHO ARE WE? </li>
+			<li id="gallery"> GALLERY </li>
+			<li id="sliderWindow"> SLIDER </li>
+			<li id="video">  VIDEO    </li>
+		</ul>
+	</div>
+	<div class="frozenImage">
+		<img src="http://placehold.it/900x600&text=BACKGROUND" stype:"position: fixed">
+		</img>
+	</div>
 	<div class="wrap">
-		<div class="topbar">
-			<ul>
-				<li id="who">  WHO ARE WE? </li>
-				<li id="gallery"> GALLERY </li>
-				<li id="sliderWindow"> SLIDER </li>
-				<li id="video">  VIDEO    </li>
-			</ul>
-		</div>
 		<div class="background_color">
 			<div class="popup">
 				<div class="popup_bar">
@@ -36,11 +42,10 @@
 			</div>
 		</div>
 		<div class="who">
-			<p>
+			
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dictum tellus a justo porta iaculis ac accumsan turpis. Suspendisse condimentum tortor maximus scelerisque rutrum. Aenean pharetra mi in velit sagittis blandit posuere vel dui. Vestibulum iaculis a est in feugiat. Nulla sed mollis eros, eu auctor quam. Morbi vitae porta nibh. Phasellus nec varius nulla. Sed maximus luctus porta. Pellentesque faucibus felis vitae enim tempus luctus. Nam scelerisque, velit vel condimentum pharetra, turpis mi tristique lacus, et consectetur risus elit sit amet massa. Aenean bibendum felis ligula, nec tempus libero consequat eu. Aenean rutrum lectus justo, at consectetur erat iaculis vel. Phasellus elementum mattis enim, ut tempor velit pretium a. Nulla facilisi. Curabitur auctor sapien non feugiat rhoncus.
 
-				Suspendisse potenti. Phasellus vitae lacinia tortor. Duis diam ex, suscipit at sapien a, consectetur aliquam nisl. Ut aliquam molestie magna eu accumsan. Donec vitae elit porta, feugiat sem quis, iaculis odio. Donec quis libero ac nulla scelerisque ullamcorper. Ut vulputate bibendum dolor ac accumsan. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In id mi velit. Donec in nulla suscipit, vestibulum quam sed, fermentum ipsum. Nam sagittis rutrum eros, ut imperdiet erat fermentum vel.
-			</p>
+				Suspendisse potenti. Phasellus vitae lacinia tortor. Duis diam ex, suscipit at sapien a, consectetur aliquam nisl. Ut aliquam molestie magna eu accumsan. Donec vitae elit porta, feugiat sem quis, iaculis odio. Donec quis libero ac nulla scelerisque ullamcorper. Ut vulputate bibendum dolor ac accumsan. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In id mi velit. Donec in nulla suscipit, vestibulum quam sed, fermentum ipsum. Nam sagittis rutrum eros, ut imperdiet erat 
 		</div>
 		<div class="gallery">
 			<div class="leftCol">
@@ -96,7 +101,15 @@
 		</div>
 		<div class="video">
 			<div class="videoFrame">
-				<iframe width="100%" height="315" src="https://www.youtube.com/embed/ycU2HR6h-3M" frameborder="0" allowfullscreen autoplay="true" start="2"></iframe>
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/ycU2HR6h-3M" frameborder="0" allowfullscreen autoplay="true" start="2"></iframe>
+			</div>
+		</div>
+		<div class="socialNetworkSect">
+			<div class="socialIcons">
+				<i class="fa fa-flickr fa-2x"></i>
+				<i class="fa fa-deviantart fa-2x"></i>
+				<i class="fa fa-reddit fa-2x"></i>
+				<i class="fa fa-facebook fa-2x"></i>
 			</div>
 		</div>
 
@@ -109,16 +122,13 @@
 			console.log(tar);
 			if (location.length > 0){
 		        $('html,body').animate({
-		          scrollTop: location.offset().top 
+		          scrollTop: location.offset().top - 100
 		        }, 1000);
 			}
 		});
 	</script>
 
 	<script>
-	// var currentImage = $(".visibleImage")[0];
-	// console.log(currentImage)
-
 		$( ".rightArrow"  ).click(function() {
 			rightArrow();
 		});

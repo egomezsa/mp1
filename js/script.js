@@ -63,8 +63,8 @@ function arrowClick(step){
 		}
 	}
 
-	newImage.css('z-index',-1);
-	fadeImage.css('z-index',0);
+	newImage.css('z-index',0);
+	fadeImage.css('z-index',1);
 
 	newImage.removeClass("hiddenImage").show();
 
@@ -105,7 +105,7 @@ $(window).scroll(function(){
 	for (var indx = 0 ; indx < locations.length ; indx ++){
 		
 		$(navChildren[indx]).css('background','');
-		if (locations[indx].top - 500 < scrollTop ){
+		if (locations[indx].top - 200 < scrollTop ){
 			current = indx;
 
 		}
@@ -129,6 +129,7 @@ $( ".popup_bar i"  ).click(function() {
 	$(".popup").find(".popup_body").find('.svgImage').remove();
 	$(".popup").find(".popup_body").find('.popup_text').empty();
 });
+
 
 
 
