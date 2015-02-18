@@ -130,6 +130,10 @@ $( ".popup_bar i"  ).click(function() {
 	$(".popup").find(".popup_body").find('.popup_text').empty();
 });
 
+$(window).on('resize', function () {
+// your code here
+	$(document).reload();
+});
 
 
 
