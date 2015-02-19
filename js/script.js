@@ -24,6 +24,7 @@ function navbarClick () {
 	event.stopPropagation()
 }
 
+// Handles the logic for transitioning images
 function arrowClick(step){
 
 	var MININDX = 2;
@@ -32,6 +33,9 @@ function arrowClick(step){
 
 	var activeIndx = currentIndx + step;
 	var nextIndx = currentIndx + 2 * step;
+
+
+	// Avoid overflowing.
 
 	if (activeIndx < MININDX - 1){
 		activeIndx = imgs.length - 1;
@@ -49,13 +53,16 @@ function arrowClick(step){
 		nextIndx = MININDX - 1;
 	}
 
-
 	if (imgs[activeIndx].className.indexOf("leftArrow") > -1){
 		activeIndx = (activeIndx + step) % imgs.length;
 	}
 
+
 	var fadeImage = $(imgs[currentIndx]);
 	var newImage  = $(imgs[activeIndx]);
+
+
+	// Push all hidden images to index - 2
 
 	for (var i = 0 ; i < imgs.length ; i++){
 		if (i >= MININDX && i != activeIndx){
@@ -63,22 +70,28 @@ function arrowClick(step){
 		}
 	}
 
+
+	// Place background image and the fading image 
+	// one behind the other.
 	newImage.css('z-index',0);
 	fadeImage.css('z-index',1);
 
-	newImage.removeClass("hiddenImage").show();
 
+	// Display the next image and fade the current one.
+	newImage.removeClass("hiddenImage").show();
 	fadeImage.fadeOut(400,function(){
 		$(this).removeClass('fadeImage');
 		$(this).addClass('hiddenImage');
 	});
 
-	newImage.addClass("nextImage");
 
+	// Update classes and the current Image
+	newImage.addClass("nextImage");
 	currentImage = $(imgs[activeIndx]);
 
 }
 
+// Bridging functions that pass in the step for arrowClick
 function rightArrow () {
 	arrowClick(1);
 }
@@ -86,6 +99,15 @@ function rightArrow () {
 function leftArrow() {
 	arrowClick(-1);
 }
+
+// Respond to click event by calling above functions.
+$( ".rightArrow"  ).click(function() {
+	rightArrow();
+});
+
+$( ".leftArrow"  ).click(function() {
+	leftArrow();
+});
 
 
 // Populating the locations that will be used position indications
@@ -96,23 +118,30 @@ for (var a = 0 ; a < navChildren.length; a++){
 	} 
 }
 
-// Navbar resizing and position indication.
+// Trying to respond to resizing. Not sure if it makes a difference.
+$(window).on('resize', function () {
+	$(document).reload();
+});
+
+// Navbar resizing and position indication based on window position.
 $(window).scroll(function(){
-	// console.log($('.topbar').height());
+
 	var scrollTop = $(window).scrollTop();
 	var current = locations[0];
 
-	for (var indx = 0 ; indx < locations.length ; indx ++){
-		
+	// Find which section we are on based on the windows
+	// position relative to top of segments.
+	for (var indx = 0 ; indx < locations.length ; indx ++){	
 		$(navChildren[indx]).css('background','');
 		if (locations[indx].top - 200 < scrollTop ){
 			current = indx;
-
 		}
 	}
 
+	// Highlight the current location on the navbar.
 	$(navChildren[current]).css('background',topbarHighlight);
 
+	// Modify 
 	if (scrollTop > topBarHeight ){
 		$('.topbar').height(70);		
 	} 
@@ -122,6 +151,22 @@ $(window).scroll(function(){
 
 });
 
+// Responding to navbar clicks.
+
+$( ".topbar li"  ).click(function() {
+	var tar = '.'.concat($(this).attr('id'));
+	var location = $(tar);
+	console.log(tar);
+	if (location.length > 0){
+        $('html,body').animate({
+          scrollTop: location.offset().top - 100
+        }, 1000);
+	}
+});
+
+
+	
+
 $( ".popup_bar i"  ).click(function() {
 	$(".background_color").css("visibility","hidden");
 	$(".popup").css("visibility","hidden");
@@ -130,9 +175,37 @@ $( ".popup_bar i"  ).click(function() {
 	$(".popup").find(".popup_body").find('.popup_text').empty();
 });
 
-$(window).on('resize', function () {
-// your code here
-	$(document).reload();
+
+$( ".popup_bar i"  ).click(function() {
+	$(".background_color").css("visibility","hidden");
+	$(".popup").css("visibility","hidden");
+	$(".popup").find(".popup_body").find('.svgImage').remove();
+	$(".popup").find(".popup_body").find('.popup_text').empty();
+
+
+});
+
+
+// Functions related to modal.
+
+$(".svgImage").click(function(){
+	var diag = $(this).siblings()[0];
+	var pop = $(".popup");
+	var img = $(this).clone();
+	var bod = pop.find(".popup_body");
+	var txt = bod.find('.popup_text');
+
+	$(".background_color").css("visibility","visible");
+
+	console.log([img.height(),img.width()])
+	pop.css("visibility","visible");
+	pop.height(($(window).height()/2) + 100);
+	pop.width(($(window).height()/2) + 500);
+	bod.append(img);
+	img.css("margin-top","-40px")
+	txt.html(diag.innerHTML);
+
+	console.log(diag.innerHTML);
 });
 
 

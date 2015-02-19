@@ -1,5 +1,6 @@
 @import url("http://fonts.googleapis.com/css?family=Bree+Serif|Merriweather");@import url("http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font:inherit;font-size:100%;vertical-align:baseline}html{line-height:1}ol,ul{list-style:none}table{border-collapse:collapse;border-spacing:0}caption,th,td{text-align:left;font-weight:normal;vertical-align:middle}q,blockquote{quotes:none}q:before,q:after,blockquote:before,blockquote:after{content:"";content:none}a img{border:none}article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{display:block}h1{font-size:2.2rem;color:#ef7e60}.test{font-size:1.2rem;color:#2176C7}
 
+// Global variables.
 $topBarTop : #AAAAAA;
 $backColor : #FAFAFA;
 $highlightColor :  rgba(202, 221, 239, 0.35);   
@@ -11,38 +12,112 @@ body{
 	margin: 0;
 }
 
-.svgImage{
+// Navbar classes
+
+.topbar {
+	position: fixed;
+	top: 0;
 	width: 100%;
+	height:100px;
+	margin:0;
+	margin-top: 0;
+	padding-left:15px;
+	color: #000000;
+	z-index: 4;
+	-webkit-transition: height 0.5s ease;
+	background: -webkit-linear-gradient($topBarTop, $topBarBottom); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient($topBarTop, $topBarBottom); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient($topBarTop, $topBarBottom); /* For Firefox 3.6 to 15 */
+    background: linear-gradient($topBarTop, $topBarBottom); /* Standard syntax (must be last) */
+
+}
+
+
+
+.topbar ul{
+	/* http://www.w3schools.com/css/css_navbar.asp */
+	list-style-type: none;
+	position: relative;
+	text-align: center;
 	height: 100%;
+	width: 100%;
+
 }
 
+.topbar li{
+	display: inline;
+	position: relative;
+	height: 100px;
+	top: 40%;
+	margin-left: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-right: 20px;
+	font-family: 'Abel', sans-serif;
+	color: $textColor;
+   	font-size: 30px;
+   	border-radius: 5px;
 
-
-.gallery{
-	height: 400px;
-	padding: 100px 100px;
-	background-color: $backColor;
-    -webkit-column-count: 3; /* Chrome, Safari, Opera */
-    -moz-column-count: 3; /* Firefox */
-    column-count: 3;
-
-    -webkit-column-width: 100px; /* Chrome, Safari, Opera */
-    -moz-column-width: 100px; /* Firefox */
-    column-width: 100px;
 }
 
-@mixin galleryCol($color){
-	width: 380px;
-	height: 380px;
-	background-color: $color;
-	overflow-y: none;
-	overflow-x: none;
-	&:hover{
-		background-color: $highlightColor;
-		border-radius: 30px;
+// Fixed Image Classes
 
-	}
+.frozenImage {
+	position: relative;
+	margin: 0;
+	height: 600px;
+	width: 900px;	
+	z-index: -4;
+	background: $backColor;
+
+
 }
+
+.frozenImage svg{
+	top: -5%;
+	position: fixed;
+	height: 600px;
+	width: 900px;
+	z-index: -3;
+
+	padding-top: 200px;
+	padding-left: 25%;
+	padding-right: 25%;
+	padding-bottom: 200px;
+	background: $backColor;
+
+}
+
+.frozenImage tspan{
+	margin-top: 50px;
+	font-family: $textFamily;
+	font-size: 150px;
+	line-height: 40px;
+	fill: $backColor;
+	
+}
+
+// Main body classes (wrapper)
+
+.wrap{
+	margin: auto;
+	margin-top: 100px;
+	width: 100%;
+	background: $backColor;
+
+}
+
+.main_text{
+	height: 150px;
+	position:  relative;
+	margin: 0 auto;
+	margin-left: 300px;
+	margin-top: 50px;
+	font-family: $textFamily;
+
+}
+
+// Popup classes
 
 .background_color{
     position:fixed;
@@ -95,40 +170,7 @@ body{
 	text-align: center;
 }
 
-.frozenImage {
-	position: relative;
-	margin: 0;
-	height: 600px;
-	width: 900px;	
-	z-index: -4;
-	background: $backColor;
-
-
-}
-
-.frozenImage svg{
-	top: -5%;
-	position: fixed;
-	height: 600px;
-	width: 900px;
-	z-index: -3;
-
-	padding-top: 200px;
-	padding-left: 25%;
-	padding-right: 25%;
-	padding-bottom: 200px;
-	background: $backColor;
-
-}
-
-.frozenImage tspan{
-	margin-top: 50px;
-	font-family: $textFamily;
-	font-size: 150px;
-	line-height: 40px;
-	fill: $backColor;
-	
-}
+// Company info classes
 
 .who {
 	top: 50px;
@@ -146,34 +188,72 @@ body{
 	line-height: 40px;
 }
 
+// Gallery classes
+
+.gallery{
+	height: 400px;
+	padding: 100px 100px;
+	background-color: $backColor;
+    -webkit-column-count: 3; /* Chrome, Safari, Opera */
+    -moz-column-count: 3; /* Firefox */
+    column-count: 3;
+
+    -webkit-column-width: 100px; /* Chrome, Safari, Opera */
+    -moz-column-width: 100px; /* Firefox */
+    column-width: 100px;
+}
+
+@mixin galleryCol($color){
+	width: 380px;
+	height: 380px;
+	background-color: $color;
+	overflow-y: none;
+	overflow-x: none;
+	&:hover{
+		background-color: $highlightColor;
+		border-radius: 30px;
+
+	}
+}
+
 .leftCol{ @include galleryCol($backColor)};
 .midCol{ @include galleryCol($backColor);};
 .rightCol{ @include galleryCol($backColor);};
 
-.startImage{
-	z-index: 0;
-}
-
-.fadeImage{
-	z-index: 0;
-}
-
-.nextImage{
-	z-index: -1;
-}
 
 
-.hiddenImage{
-	visibility: hidden;
-	height: 500px;
-	width: 800px;
-	z-index: -2;
+.svgImage{
+	width: 100%;
+	height: 100%;
 }
+
+.dialog{
+	display: none;
+}
+
+// Carousel Classes
 
 .slider{
 	padding: 200px 0 100px 0;
 }
 
+
+.sliderWindow{
+	height: 500px;
+	width: 800px;
+	position: relative;
+	margin: 0 auto;
+	top: 70px;
+
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+
+.sliderWindow img{
+	position: absolute;
+	
+}
 
 @mixin arrows($color){
 	position: absolute;
@@ -206,88 +286,30 @@ body{
 	margin-top: 230px;
 };
 
-.sliderWindow{
+
+.startImage{
+	z-index: 0;
+}
+
+.fadeImage{
+	z-index: 0;
+}
+
+.nextImage{
+	z-index: -1;
+}
+
+
+.hiddenImage{
+	visibility: hidden;
 	height: 500px;
 	width: 800px;
-	position: relative;
-	margin: 0 auto;
-	top: 70px;
-
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-}
-
-.sliderWindow img{
-	position: absolute;
-}
-
-.wrap{
-	margin: auto;
-	margin-top: 100px;
-	width: 100%;
-	background: $backColor;
-
-}
-
-.dialog{
-	display: none;
-}
-
-.main_text{
-	height: 150px;
-	position:  relative;
-	margin: 0 auto;
-	margin-left: 300px;
-	margin-top: 50px;
-	font-family: $textFamily;
-
-}
-.topbar {
-	position: fixed;
-	top: 0;
-	width: 100%;
-	height:100px;
-	margin:0;
-	margin-top: 0;
-	padding-left:15px;
-	color: #000000;
-	z-index: 4;
-	-webkit-transition: height 0.5s ease;
-	background: -webkit-linear-gradient($topBarTop, $topBarBottom); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient($topBarTop, $topBarBottom); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient($topBarTop, $topBarBottom); /* For Firefox 3.6 to 15 */
-    background: linear-gradient($topBarTop, $topBarBottom); /* Standard syntax (must be last) */
-
+	z-index: -2;
 }
 
 
+// Video Classes
 
-.topbar ul{
-	/* http://www.w3schools.com/css/css_navbar.asp */
-	list-style-type: none;
-	position: relative;
-	text-align: center;
-	height: 100%;
-	width: 100%;
-
-}
-
-.topbar li{
-	display: inline;
-	position: relative;
-	height: 100px;
-	top: 40%;
-	margin-left: 20px;
-	padding-left: 10px;
-	padding-right: 10px;
-	margin-right: 20px;
-	font-family: 'Abel', sans-serif;
-	color: $textColor;
-   	font-size: 30px;
-   	border-radius: 5px;
-
-}
 
 .video{
 	position: relative;
@@ -303,6 +325,8 @@ body{
 	padding-bottom: 0;
 
 }
+
+// Footer Classes
 
 .socialNetworkSect{
 	position: relative;
